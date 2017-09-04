@@ -42,7 +42,7 @@ usage: postscreen_stats.py -f maillog
 
   -y|--year=    select the year of the logs (default is current year)
 
-  --rfc3339     set the timestamp format to "2012-04-13T08:53:00+02:00"
+  --rfc3339     set the timestamp format to "2012-04-13T08:53:00.469412+02:00"
                 instead of the regular syslog format "Oct 23 04:02:17"
 
 example command:
@@ -61,8 +61,8 @@ def gen_unix_ts(syslog_date):
     unix_ts = now_ts
     if RFC3339:
         date = syslog_date.split('+', 1)
-        # example format: 2012-04-13T08:53:00+02:00
-        ts = strptime(date[0], '%Y-%m-%dT%H:%M:%S')
+        # example format: 2012-04-13T08:53:00.469412+02:00
+        ts = strptime(date[0], '%Y-%m-%dT%H:%M:%S.%f')
         unix_ts = mktime(ts)
     else:
         # add the year
