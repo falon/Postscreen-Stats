@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.6
 
 # Parses the postscreen logs and display stats
 # mjc - 20160921
@@ -546,27 +546,27 @@ if MAPDEST not in "" and GEOFILE not in "":
                     mapcode = '<p>' + log + ": " + str(dt.fromtimestamp(int(
                         ip_list[client].logs[log])).strftime('%Y-%m-%d %H:%M:%S')) \
                         + '''</p>' + ' '''
-            fd.write(mapcode)
-        else:
-            mapcode = '<p>' + log + ": " + str(ip_list[client].logs[log]) + \
-                      '''</p>' + ' '''
-            fd.write(mapcode)
+                    fd.write(mapcode)
+                else:
+                    mapcode = '<p>' + log + ": " + str(ip_list[client].logs[log]) + \
+                        '''</p>' + ' '''
+                    fd.write(mapcode)
 
             for action in sorted(ip_list[client].actions):
                 if ip_list[client].actions[action] > 0:
                     mapcode = '<p>' + action + ": " + \
                               str(ip_list[client].actions[action]) + \
                               '''</p>' + ' '''
-            fd.write(mapcode)
+                    fd.write(mapcode)
 
-        if action in ('DNSBL'):
-            mapcode = '<p>' + "DNSBL ranks: "
-            fd.write(mapcode)
-            for rank in ip_list[client].dnsbl_ranks:
-                mapcode = " " + str(rank) + ","
-                fd.write(mapcode)
+                if action in ('DNSBL'):
+                   mapcode = '<p>' + "DNSBL ranks: "
+                   fd.write(mapcode)
+                   for rank in ip_list[client].dnsbl_ranks:
+                     mapcode = " " + str(rank) + ","
+                     fd.write(mapcode)
                 mapcode = '''</p>' + ' '''
-                fd.write(mapcode)
+            fd.write(mapcode)
 
             if 'city' in ip_list[client].geoloc:
                 mapcode = '<p>' + 'Location: ' + \
@@ -575,17 +575,17 @@ if MAPDEST not in "" and GEOFILE not in "":
                     '''<p> ' + ' '''
                 fd.write(mapcode)
 
-                mapcode = '''</div></div>';
-  info_window[''' + str(incr) + '''] = new google.maps.InfoWindow({
-  content: desc_ip[''' + str(incr) + '''], maxWidth: 500});
-  google.maps.event.addListener(marker_ip[''' + str(incr) + '''], 'click',
-  function() {
-    info_window[''' + str(incr) + '''].open(myMap,
-    marker_ip[''' + str(incr) + ''']);
-             });
+            mapcode = '''</div></div>';
+                info_window[''' + str(incr) + '''] = new google.maps.InfoWindow({
+                   content: desc_ip[''' + str(incr) + '''], maxWidth: 500});
+                google.maps.event.addListener(marker_ip[''' + str(incr) + '''], 'click',
+                  function() {
+                    info_window[''' + str(incr) + '''].open(myMap,
+                    marker_ip[''' + str(incr) + ''']);
+                  });
 '''
             incr += 1
-        fd.write(mapcode)
+            fd.write(mapcode)
 
     mapcode = '''
     }
