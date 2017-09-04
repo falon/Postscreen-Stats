@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.6
+#!/usr/bin/env python
 
 # Parses the postscreen logs and display stats
 # mjc - 20160921
