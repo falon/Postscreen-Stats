@@ -559,14 +559,14 @@ if MAPDEST not in "" and GEOFILE not in "":
                               '''</p>' + ' '''
                     fd.write(mapcode)
 
-                if action in ('DNSBL'):
-                   mapcode = '<p>' + "DNSBL ranks: "
-                   fd.write(mapcode)
-                   for rank in ip_list[client].dnsbl_ranks:
-                     mapcode = " " + str(rank) + ","
-                     fd.write(mapcode)
-                mapcode = '''</p>' + ' '''
-            fd.write(mapcode)
+                    if action in ('DNSBL'):
+                        mapcode = '<p>' + "DNSBL ranks: "
+                        fd.write(mapcode)
+                        for rank in ip_list[client].dnsbl_ranks:
+                            mapcode = " " + str(rank) + ","
+                            fd.write(mapcode)
+                        mapcode = '''</p>' + ' '''
+                        fd.write(mapcode)
 
             if 'city' in ip_list[client].geoloc:
                 mapcode = '<p>' + 'Location: ' + \
